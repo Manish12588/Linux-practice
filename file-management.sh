@@ -25,6 +25,7 @@ print_command() {
 # ============================================
 # FILE MANAGEMENT
 # ============================================
+{
 
 print_header "1. PRESENT WORKING DIRECTORY"
 print_command "pwd" "Shows the present working directory."
@@ -132,3 +133,13 @@ rm -r test_dir/sub_dir
 echo "Successfully removed the directory."
 print_command "tree test_dir" "Validating after remove directory."
 tree test_dir
+
+
+print_header "18. CLEANUP"
+print_command "rm -r test_dir/" "Remove the directory to cleanup the structure"
+rm -r test_dir/
+echo "Successfully removed the test_dir directory."
+print_command "tree" "Validating after remove directory."
+tree
+
+} | tee command-output.txt
