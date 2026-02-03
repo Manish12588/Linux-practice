@@ -11,3 +11,11 @@ Inside the repository we will be having the shell file of linux command which we
 2. Open the folder in your IDE (VSCode)
 3. Run the shell file using "./filename.sh" command (e.g ./file-management.sh)
 
+
+---
+
+<span style="color:red"> 
+
+# Note: I will be updating this repo regularly during our batch duration. Please take an update... # 
+
+</span>
