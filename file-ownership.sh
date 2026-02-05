@@ -2,6 +2,9 @@
 
 source utils.sh
 
+user=$(get_current_user)
+echo "Current user is= $user"
+
 {
 # ============
 # ADDING USER
@@ -169,8 +172,8 @@ ls -l team-notes.txt
 
 
 print_header "18. REMOVE FILE - devops-file.txt"
-print_command "sudo chown manis devops-file.txt" "Changing back the owner"
-sudo chown manis devops-file.txt
+print_command "sudo chown $user devops-file.txt" "Changing back the owner"
+sudo chown $user devops-file.txt
 echo "Ower has been changed successfully."
 print_command "ls -l devops-file.txt" "Validating new owner"
 ls -l devops-file.txt
@@ -182,8 +185,8 @@ ls -l devops-file.txt
 
 
 print_header "19. REMOVE FILE - project-config.yaml"
-print_command "sudo chown manis:manis project-config.yaml" "Changing back the owner and group owner"
-sudo chown manis:manis project-config.yaml
+print_command "sudo chown $user:$user project-config.yaml" "Changing back the owner and group owner"
+sudo chown $user:$user project-config.yaml
 echo "Ower has been changed successfully."
 print_command "ls -l project-config.yaml" "Validating new owner"
 ls -l project-config.yaml
@@ -195,8 +198,8 @@ ls -l project-config.yaml
 
 
 print_header "20. REMOVE DIRECTORY - APP-LOGS"
-print_command "sudo chown manis:manis app-logs" "Changing back the owner and group owner"
-sudo chown manis:manis app-logs
+print_command "sudo chown $user:$user app-logs" "Changing back the owner and group owner"
+sudo chown $user:$user app-logs
 echo "Ower has been changed successfully."
 print_command "ls -ld app-logs" "Validating new owner"
 ls -ld app-logs
@@ -208,8 +211,8 @@ ls -ld app-logs
 
 
 print_header "21. REMOVE DIRECTORY - HEIST-PROJECT"
-print_command "sudo chown -R manis:manis heist-project/" "Changing back the owner and group owner"
-sudo chown -R manis:manis heist-project/
+print_command "sudo chown -R $user:$user heist-project/" "Changing back the owner and group owner"
+sudo chown -R $user:$user heist-project/
 echo "Ower has been changed successfully."
 print_command "tree -pug heist-project/" "Validating new owner"
 tree -pug heist-project/
@@ -256,4 +259,4 @@ echo "User 'berlin' deleted successfully."
 print_command "cat /etc/passwd | grep -e 'berlin' " "Validating the deleted user."
 cat /etc/passwd | grep -e "berlin" 
 
-}
+} | tee command-output.txt

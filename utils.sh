@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Color codes for better readability
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
@@ -16,4 +18,9 @@ print_command() {
     echo -e "${GREEN}Command:${NC} $1"
     echo -e "${GREEN}Purpose:${NC} $2"
     echo "---"
+}
+
+get_current_user(){
+    user=$(whoami)
+    echo "$user"
 }
