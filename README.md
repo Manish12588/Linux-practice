@@ -1,5 +1,7 @@
 - [Linux Commands Practice ]()
   - [How To Use The Repo](#how-to-use-the-repo)
+  - [File Management](#file-management)
+  - [File Ownsership](#file-ownership)
 
 # Linux-practice
 Inside the repository we will be having the shell file of linux command which we used in day to day life
@@ -12,6 +14,19 @@ Inside the repository we will be having the shell file of linux command which we
 3. Run the shell file using "./filename.sh" command (e.g ./file-management.sh)
 4. You will see the results on terminal as well as result will get save in text file.
 ---
+
+## File Management ##
+
+    File Name = filemanagement.sh
+
+---
+
+## File Ownership ##
+
+    File Name = file-ownership.sh
+
+---
+
 
 <span style="color:red"> 
 
