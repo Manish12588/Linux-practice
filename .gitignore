@@ -1,0 +1,15 @@
+# Shell script backups and temporary files
+*.bak
+*~
+*.swp
+*.tmp
+
+# Log files
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+#ignore key file
+*.pem
