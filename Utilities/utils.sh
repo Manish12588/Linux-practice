@@ -123,7 +123,7 @@ connect_ec2_via_ssh(){
                         --query 'Reservations[*].Instances[*].PublicDnsName' \
                         --output text
                 )
-    echo ssh -i ""$KEY_FILE"" ubuntu@$PUBLIC_DNS
+    echo -e ssh -i ""$KEY_FILE"" ubuntu@$PUBLIC_DNS\n
     ssh -i ""$KEY_FILE"" ubuntu@$PUBLIC_DNS
     
 }
