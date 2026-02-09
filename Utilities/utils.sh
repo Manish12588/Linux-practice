@@ -117,13 +117,13 @@ connect_ec2_via_ssh(){
 
     local INSTANCE_NAME=$1
     local KEY_FILE=$2
-    variable=$(find $HOME -type f -name "devops-practice-ec2-manish-key.pem" 2>/dev/null | head -n 1)
-    echo $variable
+    variable=$(find $HOME -type f -name "$KEY_FILE" 2>/dev/null | head -n 1)
     PUBLIC_DNS=$(aws ec2 describe-instances \
                         --filters "Name=tag:Name,Values=$INSTANCE_NAME" \
                         --query 'Reservations[*].Instances[*].PublicDnsName' \
                         --output text
                 )
+    echo ssh -i ""$KEY_FILE"" ubuntu@$PUBLIC_DNS
     ssh -i ""$KEY_FILE"" ubuntu@$PUBLIC_DNS
     
 }
