@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source utils.sh
+source Utilities/utils.sh
 
 user=$(get_current_user)
 echo "Current user is= $user"
