@@ -123,7 +123,43 @@ connect_ec2_via_ssh(){
                         --query 'Reservations[*].Instances[*].PublicDnsName' \
                         --output text
                 )
-    echo -e ssh -i ""$KEY_FILE"" ubuntu@$PUBLIC_DNS\n
+    echo -e ssh -i ""$KEY_FILE"" ubuntu@$PUBLIC_DNS "\n"
     ssh -i ""$KEY_FILE"" ubuntu@$PUBLIC_DNS
+    
+}
+
+copy_files_from_ec2_to_local(){
+
+    local INSTANCE_NAME=$1
+    local KEY_FILE=$2
+    local FILE_NAME=$3
+    local LOCAL_DIRECTORY_PATH=$4
+    
+    variable=$(find $HOME -type f -name "$KEY_FILE" 2>/dev/null | head -n 1)
+    PUBLIC_DNS=$(aws ec2 describe-instances \
+                        --filters "Name=tag:Name,Values=$INSTANCE_NAME" \
+                        --query 'Reservations[*].Instances[*].PublicDnsName' \
+                        --output text
+                )
+    echo -e scp -i ""$KEY_FILE"" ubuntu@$PUBLIC_DNS:$FILE_NAME $LOCAL_DIRECTORY_PATH "\n"
+    scp -i ""$KEY_FILE"" ubuntu@$PUBLIC_DNS:$FILE_NAME $LOCAL_DIRECTORY_PATH"\n"
+    
+}
+
+copy_dir_from_ec2_to_local(){
+
+    local INSTANCE_NAME=$1
+    local KEY_FILE=$2
+    local FILE_NAME=$3
+    local LOCAL_DIRECTORY_PATH=$4
+    
+    variable=$(find $HOME -type f -name "$KEY_FILE" 2>/dev/null | head -n 1)
+    PUBLIC_DNS=$(aws ec2 describe-instances \
+                        --filters "Name=tag:Name,Values=$INSTANCE_NAME" \
+                        --query 'Reservations[*].Instances[*].PublicDnsName' \
+                        --output text
+                )
+    echo -e scp -r -i ""$KEY_FILE"" ubuntu@$PUBLIC_DNS:$FILE_NAME $LOCAL_DIRECTORY_PATH "\n"
+    scp -r -i ""$KEY_FILE"" ubuntu@$PUBLIC_DNS:$FILE_NAME $LOCAL_DIRECTORY_PATH"\n"
     
 }
