@@ -1,11 +1,5 @@
-- [Linux Commands Practice ]()
-  - [How To Use The Repo](#how-to-use-the-repo)
-  - [EC2](#ec2)
-  - [File Ownsership](#file-ownership)
-
 # Linux-practice
 Inside the repository we will be having the shell file of linux command which we used in day to day life
-
 
 ## How To Use The Repo ##
 
@@ -15,21 +9,8 @@ Inside the repository we will be having the shell file of linux command which we
 4. You will see the results on terminal as well as result will get save in text file.
 ---
 
-## EC2 ##
+## 📁 Repository Structure
 
-    
-
----
-
-## File Ownership ##
-
-    File Name = file-ownership.sh
-
----
-
-
-<span style="color:red"> 
-
-# Note: I will be updating this repo regularly during our batch duration. Please take an update... # 
-
-</span>
+- [Service Scripts](./SERVICE/README.md) — Create, register, start, stop and cleanup services
+- [EC2](./EC2/README.md) — 
+- [Linux Basic and Advance](./LINUX-BASIC-ADVANCE/README.md) —
