@@ -163,3 +163,62 @@ copy_dir_from_ec2_to_local(){
     scp -r -i ""$KEY_FILE"" ubuntu@$PUBLIC_DNS:$FILE_NAME $LOCAL_DIRECTORY_PATH
     
 }
+
+# ── Arrow key selector ────────────────────────
+select_ec2_instance() {
+    
+    #Fetch All the EC2 Instance and create an INTANCES array 
+    mapfile -t INSTANCES < <(
+        aws ec2 describe-instances \
+            --query 'Reservations[*].Instances[*].Tags[?Key==`Name`]|[][][].Value' \
+            --output text | tr '\t' '\n' | sort -u | grep -v '^$'
+    )
+
+    #Checking if Instance count is zero, If yes then exiting the code
+    if [[ ${#INSTANCES[@]} -eq 0 ]]; then
+        echo "No EC2 instances found."
+        exit 1
+    fi
+
+    local selected=0
+    local total=${#INSTANCES[@]}
+    local first_draw=true
+
+    while true; do
+        if [[ $first_draw == true ]]; then
+            echo "Select EC2 Instance  (↑↓ Navigate, Enter Select, q Quit)"
+            echo ""
+            for i in "${!INSTANCES[@]}"; do
+                if [[ $i -eq $selected ]]; then
+                    echo "  ▶  ${INSTANCES[$i]}"
+                else
+                    echo "     ${INSTANCES[$i]}"
+                fi
+            done
+            first_draw=false
+        else
+            echo -ne "\033[${total}A"
+            for i in "${!INSTANCES[@]}"; do
+                if [[ $i -eq $selected ]]; then
+                    echo "  ▶  ${INSTANCES[$i]}$(printf '\033[K')"
+                else
+                    echo "     ${INSTANCES[$i]}$(printf '\033[K')"
+                fi
+            done
+        fi
+
+        read -rsn1 key
+        if [[ $key == $'\x1b' ]]; then
+            read -rsn2 -t 0.1 seq
+            case "$seq" in
+                '[A') ((selected--)); [[ $selected -lt 0 ]] && selected=$((total-1)) ;; #Up Arrow
+                '[B') ((selected++)); [[ $selected -ge $total ]] && selected=0 ;;       #Down Arrow
+            esac
+        elif [[ $key == "" ]]; then
+            instance_name="${INSTANCES[$selected]}"
+            break
+        elif [[ $key == "q" ]]; then
+            exit 0
+        fi
+    done
+}
