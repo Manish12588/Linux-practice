@@ -1,6 +1,6 @@
 - [Linux Commands Practice ]()
   - [How To Use The Repo](#how-to-use-the-repo)
-  - [File Management](#file-management)
+  - [EC2](#ec2)
   - [File Ownsership](#file-ownership)
 
 # Linux-practice
@@ -15,9 +15,9 @@ Inside the repository we will be having the shell file of linux command which we
 4. You will see the results on terminal as well as result will get save in text file.
 ---
 
-## File Management ##
+## EC2 ##
 
-    File Name = filemanagement.sh
+    
 
 ---
 
